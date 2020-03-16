@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script src="./js/index.js"></script>
+<script>
+    // es5里面的类
+
+    // 1.最简单的类
+    /*
+        function Person(){
+            this.name = '张三';
+            this.age = 20;
+        }
+        var p = new Person();
+        console.log(p.name)
+    */
+
+    // 2.构造函数和原型链里面增加方法
+    /*
+        function Person(){
+            this.name = '张三';
+            this.age = 20;
+            this.run = function(){
+                console.log(this.name+'在运动')
+            }
+        }
+        // 在原型链上面的属性会被多个实例共享，构造函数不会
+        Person.prototype.sex = "男";
+        Person.prototype.Work = function(){
+            console.log(this.name+'在工作')
+        }
+
+        var p = new Person();
+        console.log(p.name)
+        p.run();
+        p.work(); // p.work is not a function
+    */
+
+    // 3.类里面的静态方法
+    /*    
+        function Person(){
+            this.name = '李四';
+            this.age = 20;
+            this.run = function (){
+                console.log(this.name+'在运动')
+            }
+        }
+        Person.getInfo = function(){
+            console.log('我是静态方法')
+        }
+        // 调用静态方法
+        Person.getInfo();
+    */
+
+    //4.es5里面的继承 对象冒充实现继承
+        /*
+            function Person(){
+                this.name = '张三';
+                this.age = 20;
+                this.run = function(){
+                    console.log(this.name+'在运动')
+                }
+            }
+            // 在原型链上面的属性会被多个实例共享，构造函数不会
+            Person.prototype.sex = "男";
+            Person.prototype.Work = function(){
+                console.log(this.name+'在工作')
+            }
+            // Web类继承Person类 原型链+对象冒充的组合继承模式
+            function Web(){
+                Person.call(this); // 对象冒充实现继承
+            }
+            var w = new Web();
+            w.run(); // 对象冒充可以继承构造函数里面的属性和方法
+            w.Work(); // 对象冒充可以继承构造函数里面的属性和方法   但是没法继承原型链上面的属性和方法
+        */
+    // 5.es5里面的继承 原型链实现继承
+    /*
+            function Person(){
+                this.name = '张三';
+                this.age = 20;
+                this.run = function(){
+                    console.log(this.name+'在运动')
+                }
+            }
+            // 在原型链上面的属性会被多个实例共享，构造函数不会
+            Person.prototype.sex = "男";
+            Person.prototype.Work = function(){
+                console.log(this.name+'在工作')
+            }
+            // Web类继承Person类 原型链+对象冒充组合继承模式
+            function Web(){}
+            Web.prototype = new Person();// 原型链实现继承
+            var w = new Web();
+            // 原型链实现继承：可以继承构造函数里面的属性和方法，也可以继承原型链上面的属性和方法
+            w.run();
+            w.Work();
+    */  
+   // 6.原型链实现继承的问题？   
+   /* 
+            function Person(name,age){
+                this.name = name;
+                this.age = age;
+                this.run = function(){
+                    console.log(this.name+'在运动')
+                }
+            }
+            // 在原型链上面的属性会被多个实例共享，构造函数不会
+            Person.prototype.sex = "男";
+            Person.prototype.Work = function(){
+                console.log(this.name+'在工作')
+            }  
+            function Web(name,age){}
+
+            Web.prototype = new Person();
+            var w = new Web('赵四',20); // 实例化子类的时候没法传给父类传参
+
+            w.run();
+    */
+
+    // 7.原型链+对象冒充继承模式
+    /*
+            function Person(name,age){
+                this.name = name;
+                this.age = age;
+                this.run = function(){
+                    console.log(this.name+'在运动')
+                }
+            }
+            // 在原型链上面的属性会被多个实例共享，构造函数不会
+            Person.prototype.sex = "男";
+            Person.prototype.Work = function(){
+                console.log(this.name+'在工作')
+            }  
+            function Web(name,age){
+                Person.call(this,name,age); // 对象冒充继承 实例化子类可以传给父类传参
+            
+            }
+
+            Web.prototype = new Person(); 
+            // 另一种写法也是可以的
+            //Web.prototype = Person.prototype;
+            var w = new Web('Tonny',25);
+            w.run();
+            w.Work();
+    */
+
+</script>
