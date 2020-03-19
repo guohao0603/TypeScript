@@ -133,3 +133,77 @@ var md5:encrypt = function(key:string,value:string):string{
 }
 
 console.log(md5('name','Tony'))
+
+//接口扩展：接口可以继承接口
+
+/*
+interface Animal {
+    eat():void;
+}
+
+interface Person extends Animal{
+    work():void;
+}
+
+class Web implements Person{
+    public name:string;
+    constructor(name:string){
+        this.name = name;
+    }
+
+    eat(){
+        console.log(this.name+'喜欢吃馒头')
+    }
+
+    work(){
+        console.log(this.name+'写代码')
+    }
+}
+
+var w = new Web('小李');
+
+w.eat();
+*/
+
+/*
+interface Animal{
+    eat():void;
+}
+
+interface Person extends Animal{
+    work():void;
+}
+
+class Programmer{
+    public name:string;
+    constructor(name:string){
+        this.name = name;
+    }
+
+    coding(code:string){
+        console.log(this.name+code)
+    }
+}
+
+class Web extends Programmer implements Person{
+    constructor(name:string){
+        super(name)
+    }
+
+    eat(){
+        console.log(this.name+'喜欢吃肉')
+    }
+
+    work(){
+        console.log(this.name+'在工作')
+    }
+}
+
+var w = new Web('小李');
+
+w.coding('写代码');
+
+w.eat();
+
+w.work();
+*/
